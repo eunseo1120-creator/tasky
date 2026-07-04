@@ -1,0 +1,181 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-quad-do: var(--quad-do);
+  --color-quad-schedule: var(--quad-schedule);
+  --color-quad-delegate: var(--quad-delegate);
+  --color-quad-eliminate: var(--quad-eliminate);
+  --color-quad-do-fg: var(--quad-do-fg);
+  --color-quad-schedule-fg: var(--quad-schedule-fg);
+  --color-quad-delegate-fg: var(--quad-delegate-fg);
+  --color-quad-eliminate-fg: var(--quad-eliminate-fg);
+
+  --font-display: "Do Hyeon", "Noto Sans KR", sans-serif;
+  --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.97 0.016 95);
+  --foreground: oklch(0.23 0.026 235);
+  --card: oklch(0.995 0.006 90);
+  --card-foreground: oklch(0.22 0.03 235);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.03 235);
+  --primary: oklch(0.64 0.14 168);
+  --primary-foreground: oklch(0.99 0.002 95);
+  --secondary: oklch(0.93 0.03 165);
+  --secondary-foreground: oklch(0.25 0.03 235);
+  --muted: oklch(0.94 0.01 95);
+  --muted-foreground: oklch(0.52 0.02 235);
+  --accent: oklch(0.9 0.07 60);
+  --accent-foreground: oklch(0.25 0.03 235);
+  --destructive: oklch(0.61 0.2 28);
+  --destructive-foreground: oklch(0.99 0.002 95);
+  --border: oklch(0.89 0.012 92);
+  --input: oklch(0.93 0.01 92);
+  --ring: oklch(0.64 0.14 168);
+
+  --quad-do: oklch(0.88 0.09 34);
+  --quad-schedule: oklch(0.9 0.085 154);
+  --quad-delegate: oklch(0.9 0.07 232);
+  --quad-eliminate: oklch(0.92 0.085 84);
+  --quad-do-fg: oklch(0.42 0.14 28);
+  --quad-schedule-fg: oklch(0.38 0.12 156);
+  --quad-delegate-fg: oklch(0.36 0.11 235);
+  --quad-eliminate-fg: oklch(0.45 0.12 74);
+
+  --sidebar: oklch(0.985 0.01 92);
+  --sidebar-foreground: oklch(0.22 0.03 235);
+  --sidebar-border: oklch(0.91 0.012 92);
+}
+
+.dark {
+  --background: oklch(0.19 0.018 240);
+  --foreground: oklch(0.96 0.012 92);
+  --card: oklch(0.25 0.02 240);
+  --card-foreground: oklch(0.96 0.012 92);
+  --popover: oklch(0.25 0.02 240);
+  --popover-foreground: oklch(0.96 0.012 92);
+  --primary: oklch(0.74 0.14 166);
+  --primary-foreground: oklch(0.18 0.018 240);
+  --secondary: oklch(0.31 0.03 175);
+  --secondary-foreground: oklch(0.96 0.012 92);
+  --muted: oklch(0.28 0.02 240);
+  --muted-foreground: oklch(0.73 0.02 95);
+  --accent: oklch(0.38 0.07 66);
+  --accent-foreground: oklch(0.98 0.01 92);
+  --destructive: oklch(0.67 0.2 28);
+  --destructive-foreground: oklch(0.99 0.002 95);
+  --border: oklch(0.33 0.02 240);
+  --input: oklch(0.33 0.02 240);
+  --ring: oklch(0.74 0.14 166);
+
+  --quad-do: oklch(0.43 0.12 30);
+  --quad-schedule: oklch(0.39 0.11 156);
+  --quad-delegate: oklch(0.42 0.1 232);
+  --quad-eliminate: oklch(0.46 0.1 82);
+  --quad-do-fg: oklch(0.93 0.07 30);
+  --quad-schedule-fg: oklch(0.93 0.08 156);
+  --quad-delegate-fg: oklch(0.92 0.07 232);
+  --quad-eliminate-fg: oklch(0.94 0.08 82);
+
+  --sidebar: oklch(0.21 0.02 240);
+  --sidebar-foreground: oklch(0.96 0.012 92);
+  --sidebar-border: oklch(0.33 0.02 240);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(60, 157, 123, 0.16), transparent 26%),
+      radial-gradient(circle at bottom right, rgba(240, 138, 93, 0.14), transparent 22%),
+      linear-gradient(180deg, color-mix(in oklab, var(--background) 94%, white) 0%, var(--background) 100%);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility glass-panel {
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+  backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+}
+
+@utility task-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.46rem 0.72rem;
+  border-radius: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  border: 1px solid color-mix(in oklab, var(--border) 76%, transparent);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+@keyframes bomb-blink-kf {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55), 0 1px 2px rgba(0, 0, 0, 0.08);
+    background: color-mix(in oklab, #ef4444 18%, var(--card));
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0), 0 0 18px rgba(239, 68, 68, 0.7);
+    background: color-mix(in oklab, #ef4444 55%, var(--card));
+  }
+}
+
+.bomb-blink {
+  animation: bomb-blink-kf 0.55s ease-in-out infinite;
+  border-color: rgba(239, 68, 68, 0.7) !important;
+}

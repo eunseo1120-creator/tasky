@@ -1,0 +1,736 @@
+.tasky-machine-shell {
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.98), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 241, 232, 0.97) 56%, rgba(232, 241, 234, 0.98));
+  box-shadow:
+    0 32px 90px rgba(15, 23, 42, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.tasky-machine-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  gap: 18px;
+  min-height: min(860px, calc(94vh - 4px));
+  padding: 18px;
+}
+
+.tasky-machine-close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.09);
+  color: #111827;
+  transition: 0.2s ease;
+}
+
+.tasky-machine-close:hover {
+  background: rgba(15, 23, 42, 0.16);
+  transform: rotate(8deg) scale(1.04);
+}
+
+.tasky-machine-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  max-height: calc(94vh - 40px);
+  overflow-y: auto;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 250, 251, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+    0 18px 36px rgba(15, 23, 42, 0.08);
+}
+
+.tasky-machine-eyebrow {
+  color: #8b5a2b;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tasky-machine-title {
+  margin: -4px 0 0;
+  font-size: clamp(26px, 2vw, 32px);
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.tasky-machine-description {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tasky-machine-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -4px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.tasky-machine-section-head small {
+  color: #8b5a2b;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.tasky-machine-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 8px;
+}
+
+.tasky-machine-list {
+  max-height: 216px;
+  overflow-y: auto;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tasky-chore-card,
+.tasky-machine-assignment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 15px;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  background: rgba(255, 255, 255, 0.84);
+  text-align: left;
+  transition: 0.18s ease;
+}
+
+.tasky-chore-card.is-active {
+  border-color: rgba(245, 158, 11, 0.72);
+  background: linear-gradient(180deg, rgba(255, 250, 235, 0.96), rgba(255, 244, 214, 0.9));
+  box-shadow: 0 14px 30px rgba(180, 83, 9, 0.12);
+}
+
+.tasky-card-remove {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #64748b;
+}
+
+.tasky-machine-member-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 72px;
+  padding: 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.tasky-member-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.tasky-machine-candidate-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tasky-candidate-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 104px;
+  padding: 10px 8px;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.78));
+  color: white;
+  text-align: center;
+}
+
+.tasky-candidate-card.is-shuffling {
+  animation: taskyBlink 0.18s linear infinite;
+}
+
+.tasky-candidate-index {
+  font-size: 11px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.tasky-machine-status {
+  padding: 16px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.88));
+  color: white;
+}
+
+.tasky-machine-status strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.tasky-machine-status p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.tasky-machine-status-badge {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.18);
+  color: #d1fae5;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.tasky-machine-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tasky-machine-assignment {
+  margin-top: auto;
+  padding: 16px;
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.tasky-machine-empty {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px dashed rgba(148, 163, 184, 0.3);
+  color: #64748b;
+  font-size: 13px;
+}
+
+.tasky-machine-stage {
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.tasky-machine-frame {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+  border-radius: 30px;
+  padding: 22px;
+  background: linear-gradient(160deg, #193044 0%, #23425b 40%, #224956 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.tasky-machine-marquee {
+  position: absolute;
+  left: 50%;
+  top: 26px;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: min(660px, calc(100% - 160px));
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffef9e 0%, #d8ab2b 62%, #b77616 100%);
+  box-shadow: 0 12px 28px rgba(120, 53, 15, 0.28);
+  text-align: center;
+  color: #2f2418;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.tasky-machine-light-strip {
+  position: absolute;
+  top: 90px;
+  bottom: 66px;
+  width: 22px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    #fff8dd 0%,
+    #cfab36 11%,
+    #9fb6da 21%,
+    #fff8dd 31%,
+    #cfab36 42%,
+    #8d6e3a 53%,
+    #fff8dd 63%,
+    #cfab36 74%,
+    #9fb6da 84%,
+    #fff8dd 100%
+  );
+  box-shadow: 0 0 18px rgba(255, 248, 220, 0.7);
+}
+
+.tasky-machine-light-strip.left {
+  left: 22px;
+}
+
+.tasky-machine-light-strip.right {
+  right: 22px;
+}
+
+.tasky-machine-playfield {
+  position: relative;
+  min-height: 650px;
+  height: 100%;
+  padding: 68px 48px 26px;
+  border-radius: 28px;
+  border: 4px solid rgba(255, 255, 255, 0.78);
+  background: linear-gradient(160deg, #0f172a, #111827 58%, #291f1a);
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 0 38px rgba(0, 0, 0, 0.5);
+}
+
+.tasky-machine-glass-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0 16%,
+    rgba(255, 255, 255, 0.16) 18% 21%,
+    transparent 23% 47%,
+    rgba(255, 255, 255, 0.1) 49% 53%,
+    transparent 56%
+  );
+  pointer-events: none;
+}
+
+.tasky-machine-selected-display {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: min(520px, calc(100% - 160px));
+  padding: 16px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+  text-align: center;
+  color: #2f2418;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.tasky-machine-drop-gate {
+  position: absolute;
+  left: 50%;
+  top: 88px;
+  display: flex;
+  gap: 22px;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #e7d0a3, #b88b42);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.26);
+}
+
+.tasky-machine-drop-gate span {
+  width: 52px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.32);
+}
+
+.tasky-machine-mini-capsules {
+  position: absolute;
+  left: 72px;
+  top: 46px;
+  display: flex;
+  gap: 12px;
+}
+
+.tasky-machine-mini-capsules span,
+.tasky-machine-static-ball,
+.tasky-machine-capsule,
+.tasky-machine-peg {
+  border-radius: 999px;
+}
+
+.tasky-machine-mini-capsules span,
+.tasky-machine-static-ball,
+.tasky-machine-capsule {
+  background: radial-gradient(circle at 30% 28%, #fff 0 16%, #e2b63f 26% 70%, #7c4b17 100%);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
+}
+
+.tasky-machine-mini-capsules span {
+  width: 30px;
+  height: 30px;
+}
+
+.tasky-machine-gear {
+  position: absolute;
+  background: repeating-conic-gradient(from 0deg, #d4af37 0 12deg, #f5f2e7 12deg 24deg);
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.tasky-machine-gear::before,
+.tasky-machine-gear::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+}
+
+.tasky-machine-gear::before {
+  inset: 24%;
+  border: 5px solid rgba(255, 255, 255, 0.85);
+}
+
+.tasky-machine-gear::after {
+  inset: 40%;
+  background: #101828;
+}
+
+.gear-a {
+  left: 9%;
+  top: 20%;
+  width: 98px;
+  height: 98px;
+}
+
+.gear-b {
+  right: 10%;
+  top: 22%;
+  width: 98px;
+  height: 98px;
+}
+
+.gear-c {
+  left: 34%;
+  top: 44%;
+  width: 72px;
+  height: 72px;
+}
+
+.tasky-machine-turntable {
+  position: absolute;
+  left: 50%;
+  top: 36%;
+  width: 160px;
+  height: 160px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  border: 8px solid rgba(255, 255, 255, 0.82);
+  background: conic-gradient(#edf3fb 0 54deg, #f0d266 54deg 112deg, #e8efe9 112deg 162deg, #b4c7e5 162deg 224deg, #9f6a2c 224deg 286deg, #d66a07 286deg 330deg, #edf3fb 330deg 360deg);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
+}
+
+.tasky-machine-turntable::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  width: 20px;
+  height: 72px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff7d5, #f3cf48);
+}
+
+.tasky-machine-turntable::after {
+  content: "";
+  position: absolute;
+  inset: 42%;
+  border-radius: 999px;
+  background: #5b4734;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.75);
+}
+
+.tasky-machine-auger {
+  position: absolute;
+  left: 69%;
+  top: 25%;
+  width: 34px;
+  height: 42%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f8e7b1, #8b6d32 12%, #fff8dd 24%, #c9a629 36%, #9bb5dd 48%, #fff8dd 60%, #8b6d32 72%, #c9a629 84%, #fff8dd 100%);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+}
+
+.tasky-machine-rail {
+  position: absolute;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffe8b7, #ffffff 40%, #8b5a2b);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+}
+
+.rail-a {
+  left: 10%;
+  top: 45%;
+  width: 34%;
+  transform: rotate(-14deg);
+}
+
+.rail-b {
+  right: 8%;
+  top: 61%;
+  width: 34%;
+  transform: rotate(14deg);
+}
+
+.rail-c {
+  left: 12%;
+  bottom: 19%;
+  width: 38%;
+  transform: rotate(-10deg);
+}
+
+.rail-d {
+  right: 7%;
+  bottom: 10%;
+  width: 38%;
+  transform: rotate(16deg);
+}
+
+.tasky-machine-spiral {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  width: 120px;
+  height: 170px;
+  border-radius: 38px 38px 48px 48px;
+  border: 8px solid rgba(212, 175, 55, 0.9);
+  border-left-color: rgba(255, 255, 255, 0.18);
+  border-top-color: rgba(212, 175, 55, 0.78);
+  transform: rotate(10deg);
+  opacity: 0.85;
+}
+
+.tasky-machine-spiral::before,
+.tasky-machine-spiral::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+}
+
+.tasky-machine-spiral::before {
+  left: 50%;
+  top: 16px;
+  width: 12px;
+  height: 78px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #fff7d5, #f3cf48);
+}
+
+.tasky-machine-spiral::after {
+  left: 50%;
+  bottom: 12px;
+  width: 20px;
+  height: 20px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 30% 28%, #fff 0 16%, #e2b63f 26% 70%, #7c4b17 100%);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+}
+
+.tasky-machine-peg {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle at 30% 28%, #fff 0 16%, #e2b63f 26% 70%, #7c4b17 100%);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.28);
+}
+
+.tasky-machine-static-ball {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+}
+
+.tasky-machine-capsule {
+  position: absolute;
+  z-index: 18;
+  width: 46px;
+  height: 46px;
+}
+
+.tasky-machine-idle {
+  position: absolute;
+  left: 50%;
+  top: 59%;
+  z-index: 16;
+  width: min(420px, calc(100% - 140px));
+  transform: translateX(-50%);
+  padding: 18px 22px;
+  border-radius: 26px;
+  background: rgba(17, 24, 39, 0.42);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.tasky-machine-basket-row {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 22px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  z-index: 14;
+}
+
+.tasky-machine-basket {
+  padding: 10px 8px 12px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.tasky-machine-basket.is-winner {
+  background: linear-gradient(180deg, rgba(255, 221, 87, 0.3), rgba(255, 193, 7, 0.12));
+  box-shadow: 0 0 0 2px rgba(255, 221, 87, 0.35);
+}
+
+.tasky-machine-basket-index {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.tasky-machine-basket-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.93);
+  color: #111827;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.tasky-machine-result {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 118px;
+  z-index: 20;
+  padding: 16px 18px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 248, 220, 0.98), rgba(250, 204, 21, 0.9));
+  color: #111827;
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.28);
+}
+
+.tasky-machine-result-kicker {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.54);
+  color: #475569;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+@keyframes taskyBlink {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-2px);
+    opacity: 0.72;
+  }
+}
+
+@media (max-width: 1180px) {
+  .tasky-machine-card {
+    grid-template-columns: 1fr;
+  }
+
+  .tasky-machine-sidebar {
+    max-height: 40vh;
+  }
+
+  .tasky-machine-frame {
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tasky-machine-card {
+    padding: 12px;
+  }
+
+  .tasky-machine-sidebar,
+  .tasky-machine-frame {
+    border-radius: 22px;
+  }
+
+  .tasky-machine-candidate-strip,
+  .tasky-machine-basket-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tasky-machine-marquee,
+  .tasky-machine-selected-display {
+    width: calc(100% - 80px);
+  }
+
+  .tasky-machine-playfield {
+    min-height: 720px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
